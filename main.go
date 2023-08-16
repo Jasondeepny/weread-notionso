@@ -19,9 +19,7 @@ func main() {
 	WeRead.WxCookie = os.Getenv("WEREAD_TOKEN")
 	NotionClient.NotionToken = os.Getenv("NOTION_TOKEN")
 	NotionClient.NotionDataBaseId = os.Getenv("NOTION_DATABASE_ID")
-	log.Printf("WEREAD_TOKEN IS >>>: %s,"+
-		"\nNOTION_TOKEN IS >>>: %s,"+
-		"\nNOTION_DATABASE_ID IS >>>: %s",
+	log.Printf("WEREAD_TOKEN IS >>>: %s,\nNOTION_TOKEN IS >>>: %s,\nNOTION_DATABASE_ID IS >>>: %s",
 		WeRead.WxCookie, NotionClient.NotionToken, NotionClient.NotionDataBaseId)
 
 	//request WeRead home page

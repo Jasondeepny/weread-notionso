@@ -1,0 +1,28 @@
+name: weread sync
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 14 * * *"
+jobs:
+  sync:
+    name: Sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.12
+        id: go
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: weread sync
+        env:
+          WEREAD_TOKEN: ${{secrets.WEREAD_COOKIE}}
+          NOTION_TOKEN: ${{secrets.NOTION_TOKEN}}
+          NOTION_DATABASE_ID: ${{secrets.NOTION_DATABASE_ID}}
+        run: go run main.go

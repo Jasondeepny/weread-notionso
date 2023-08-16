@@ -44,7 +44,6 @@ func DoWxQuery(Url string, method string, param []byte) []byte {
 }
 
 func client(Url string, method string, param []byte) (*http.Response, []byte) {
-
 	request, _ := http.NewRequest(method, Url, bytes.NewBuffer(param))
 	r, err := WxClient.Do(request)
 	if err != nil {
