@@ -1,0 +1,15 @@
+version: '3'
+services:
+  weread-notionso:
+    image: jasondeepny/weread-notionso:latest
+    container_name: weread-notionso
+    restart: on-failure
+    env_file:
+      - .env
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
+
