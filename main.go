@@ -38,9 +38,9 @@ func main() {
 	//Process each notebook
 	for _, book := range notebooks.Books {
 		bookSort := book.Sort
-		//if bookSort <= latestSort {
-		//	continue
-		//}
+		if bookSort <= latestSort {
+			continue
+		}
 
 		//get bookInfo
 		bookInfo := NotionClient.GetBookInfo(WeRead.WereadBookInfo, "GET", book.BookId)
