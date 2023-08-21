@@ -1,4 +1,5 @@
 # weread-notionso
+
 # golang sync weread note to notion
 
 微信读书笔记、划线等信息同步到notion数据库
@@ -6,6 +7,7 @@
 > ![同步效果](https://markdown-mac-work-1306720256.cos.ap-guangzhou.myqcloud.com/png/AzRZUp.png)
 
 ## 使用方法
+
  ```bash
    1. 获取 **Notion token**
       - 打开[此页面](https://www.notion.so/my-integrations)并登录
@@ -24,23 +26,28 @@
 ```
 
 ### 1.github Action 运行
+
  ```bash
     fork 项目
     github action settings >>> secrets >>> 配置环境变量
  ```
 
 ### 2.docker 运行
+
  ```bash
-    docker run -d --name weread-notion jasondeepny/weread-notionso:latest
+    docker run -d --name weread-notion --env-file env jasondeepny/weread-notionso:latest
+    
+    crontab -e
+    0 1 * * *  docker restart weread-notion
  ```
 
 ### 3.docker-compose 运行
+
  ```bash
     mkdir weread && cd weread
     
     wget https://raw.githubusercontent.com/Jasondeepny/weread-notionso/main/docker-compose.yml
     #修改.env文件环境变量
-        wget https://raw.githubusercontent.com/Jasondeepny/weread-notionso/main/.env
     #也可以通过export直接导入环境变量
     
     docker-compose up -d
@@ -48,9 +55,11 @@
     #加入定定时任务
     crontab -e 
     0 1 * * * cd /root/weread && /usr/local/bin/docker-compose up -d
+    
  ```
 
 ## 鸣谢
+- https://github.com/jomei/notionapi
 - https://github.com/malinkang/weread_to_notion
 
 - 配合 NoitonNext 构建 Blog [效果](https://yaya.run/article/1c51da0f-757a-47e5-8296-cc37798b8211)非常好

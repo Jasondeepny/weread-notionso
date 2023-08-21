@@ -37,6 +37,7 @@ func main() {
 	for _, book := range notebooks.Books {
 		bookSort := book.Sort
 		if bookSort <= latestSort {
+			fmt.Println("there is no update...")
 			continue
 		}
 

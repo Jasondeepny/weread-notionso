@@ -56,7 +56,7 @@ func client(Url string, method string, param []byte) (*http.Response, []byte) {
 		}
 	}(r.Body)
 	body, _ := ioutil.ReadAll(r.Body)
-	log.Print("<<<Response StatusCode>>> :", r.StatusCode, "\nfrom ==>> :", Url)
+	log.Print("<<<Response StatusCode>>> :", r.StatusCode, " ,from ==>> :", Url)
 	if r.StatusCode != 200 {
 		log.Print("<<<WX request error>>> :", string(body))
 	}
