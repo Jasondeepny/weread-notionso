@@ -60,7 +60,7 @@ func main() {
 		}
 
 		//sort bookmarkList
-		NotionClient.SortBooks(bookmarkList.BookMarkUpdates)
+		NotionClient.SortBooks(&bookmarkList.BookMarkUpdates)
 
 		//get Children block
 		children, grandChild := NotionClient.GetChildren(chapter, summary, bookmarkList)

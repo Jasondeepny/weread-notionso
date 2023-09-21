@@ -440,15 +440,15 @@ func GetBookInfo(Url string, method string, bookId string) *BookInfoData {
 	return &bookInfo
 }
 
-func SortBooks(bookmarkList []BookMarkUpdate) {
-	sort.Slice(bookmarkList, func(i, j int) bool {
+func SortBooks(bookmarkList *[]BookMarkUpdate) {
+	sort.Slice(*bookmarkList, func(i, j int) bool {
 		// Sort by chapterUid
-		if bookmarkList[i].ChapterUid != bookmarkList[j].ChapterUid {
-			return bookmarkList[i].ChapterUid < bookmarkList[j].ChapterUid
+		if (*bookmarkList)[i].ChapterUid != (*bookmarkList)[j].ChapterUid {
+			return (*bookmarkList)[i].ChapterUid < (*bookmarkList)[j].ChapterUid
 		}
 		// Sort by range
-		rangeI := bookmarkList[i].Range
-		rangeJ := bookmarkList[j].Range
+		rangeI := (*bookmarkList)[i].Range
+		rangeJ := (*bookmarkList)[j].Range
 		// Handle empty range
 		if rangeI == "" && rangeJ == "" {
 			return false
@@ -581,7 +581,7 @@ func GetBookmarkList(Url string, method string, bookId string) *BookMarks {
 	var bookMarks BookMarks
 	err := json.Unmarshal(res, &bookMarks)
 	check(err)
-	SortBooks(bookMarks.BookMarkUpdates)
+	SortBooks(&bookMarks.BookMarkUpdates)
 	return &bookMarks
 }
 
